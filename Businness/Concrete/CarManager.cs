@@ -1,4 +1,6 @@
 ﻿using Businness.Constant;
+using Businness.ValidationRules.FluentValidation;
+using Core.Aspect.Autofac.Validation;
 using Core.DataAccess;
 using Core.DataAccess.EntityFramework;
 using Core.Utilities.Result;
@@ -20,12 +22,10 @@ namespace Businness.Concrete
             _carDal = carDal;
         }
 
+
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
-            if (car.CarName.Length<2)
-            {
-                return new ErrorResult(Messages.InvalidName);
-            }
             _carDal.Add(car);
             return new SuccessResult(Messages.Added);
         }
