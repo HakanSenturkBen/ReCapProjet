@@ -18,7 +18,7 @@ namespace ConsoleUI
                                             Description = "Havalarda soğudu", 
                                             ModelYear = "2021" };
 
-            //AracEkle(car);
+            AracEkle(car);
             CarTest();
         }
 
