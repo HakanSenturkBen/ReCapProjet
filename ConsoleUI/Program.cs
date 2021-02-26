@@ -27,10 +27,11 @@ namespace ConsoleUI
             {
                 foreach (var r in result.Data)
                 {
-                    
+
                     Console.WriteLine(r);
                 }
             }
+
 
 
         }

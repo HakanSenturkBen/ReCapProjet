@@ -27,16 +27,23 @@ namespace Businness.Concrete
         {
             //Resimler projeniz içerisinde bir klasörde tutulacaktır.
             //Bir arabanın en fazla 5 resmi olabilir.
-            BusinessRules.Run(CheckDirectoryExistOrNot(path),CheckImageCount(images.CarId));
+
+            IResult result= BusinessRules.Run(CheckDirectoryExistOrNot(path),CheckImageCount(images.CarId));
+
+            if (result!=null)
+            {
+                return new ErrorResult();
+            }
 
             //Resimler yüklendiği isimle değil, kendi vereceğiniz GUID ile dosyalanacaktır.
-            images.ImagePath =path+"\\"+Guid.NewGuid().ToString();
+            images.ImagePath = path + "\\" + Guid.NewGuid().ToString();
 
             //Resmin eklendiği tarih sistem tarafından atanacaktır.
-             images.DateTime = DateTime.Now;
+            images.DateTime = DateTime.Now;
 
             _carImageDal.Add(images);
             return new SuccessResult(Messages.Added);
+
         }
 
         private IResult CheckDirectoryExistOrNot(string path)
