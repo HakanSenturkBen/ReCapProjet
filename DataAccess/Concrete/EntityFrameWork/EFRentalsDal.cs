@@ -34,6 +34,7 @@ namespace DataAccess.Concrete.EntityFrameWork
                                  ReturnDate=r.ReturnDate,
                                  Totaldebt=(r.ReturnDate.Day-r.RentDate.Day)*c.DailyPrice
                              };
+                
                 return result.ToList();
             }
         }

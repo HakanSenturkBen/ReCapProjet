@@ -9,11 +9,11 @@ namespace Businness.Abstract
 {
     public interface IRentalsService
     {
-        IDataResult<List<RentalDetailDto>> GetRentalDetails();
         IDataResult<List<Rentals>> GetAll();
         IDataResult<Rentals> GetById(int rentalID);
         IResult Add(Rentals rent);
         IResult Update(Rentals rent);
         IResult Delete(Rentals rent);
+        IDataResult<List<RentalDetailDto>> GetRentalDetails();
     }
 }

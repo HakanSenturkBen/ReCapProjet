@@ -1,7 +1,5 @@
 ﻿using Core.Entities;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Entities.DTOs
 {
@@ -20,6 +18,6 @@ namespace Entities.DTOs
         public DateTime ReturnDate { get; set; }
         public decimal Totaldebt { get; set; }
 
-
+        public override string ToString() => $"{CustomerName} {CarBrand} {CarName} {CarColor} {ModelYear} {Totaldebt}";
     }
 }

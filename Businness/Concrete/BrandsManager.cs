@@ -3,9 +3,7 @@ using Businness.Constant;
 using Core.Utilities.Result;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Businness.Concrete
 {
@@ -30,7 +28,11 @@ namespace Businness.Concrete
             _brandsDal.Delete(brand);
             return new SuccessResult(Messages.Deleted);
         }
-               
+
+        public IDataResult<List<Brands>> GetAll()
+        {
+            return new SuccessDataResult<List<Brands>>(_brandsDal.GetAll(),Messages.Listed);
+        }
 
         public IDataResult<Brands> GetById(int brandID)
         {
@@ -43,14 +45,7 @@ namespace Businness.Concrete
             return new SuccessResult(Messages.Updated);
         }
 
-        IDataResult<List<Brands>> IBrandsService.GetAll()
-        {
-            if (DateTime.Now.Hour > 22 || DateTime.Now.Hour < 8)
-            {
-                return new ErrorDataResult<List<Brands>>(_brandsDal.GetAll(), Messages.MaintenanceTime);
-            }
-
-            return new SuccessDataResult<List<Brands>>(_brandsDal.GetAll(), Messages.Listed);
-        }
+        
+        
     }
 }

@@ -21,6 +21,9 @@ namespace DataAccess.Concrete.EntityFrameWork
             modelBuilder.Entity<Customers>().HasKey(x => x.userID);
             modelBuilder.Entity<Rentals>().HasKey(x => x.RentID);
             modelBuilder.Entity<Users>().HasKey(x => x.UserID);
+            modelBuilder.Entity<CarImages>().HasKey(x => x.ImageId);
+
+
         }
         public DbSet<Car> Car { get; set; }
         public DbSet<Colors> Colors { get; set; }
@@ -28,6 +31,7 @@ namespace DataAccess.Concrete.EntityFrameWork
         public DbSet<Customers> Customers { get; set; }
         public DbSet<Rentals> Rentals { get; set; }
         public DbSet<Users> Users { get; set; }
+        public DbSet<CarImages> CarImages { get; set; }
 
     }
 

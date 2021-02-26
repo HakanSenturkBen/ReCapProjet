@@ -14,5 +14,9 @@ namespace Businness.Constant
         public static string Updated = "veri tabanında güncellendi.";
         public static string Rented = "=>araç daha önce kiralandı";
         public static string RentOk="=>kiralama işlemi tamamlandı";
+
+        public static string DirectoryNotExists = "Resimler klasörü bulunamadı";
+
+        public static string ImageCountOverflow { get; internal set; }
     }
 }

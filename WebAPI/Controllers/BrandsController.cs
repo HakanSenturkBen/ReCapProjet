@@ -30,6 +30,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
         [HttpPost("Add")]
         public IActionResult Add(Brands brands)
         {
@@ -63,7 +64,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpDelete("Updete")]
+        [HttpPut ("Updete")]
         public IActionResult Update(Brands brand)
         {
             var result = _brandsService.Update(brand);

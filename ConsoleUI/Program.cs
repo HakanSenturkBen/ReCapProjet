@@ -18,8 +18,21 @@ namespace ConsoleUI
                                             Description = "Havalarda soğudu", 
                                             ModelYear = "2021" };
 
-            AracEkle(car);
-            CarTest();
+            // AracEkle(car);
+            //CarTest();
+
+            RentalsManager rManager = new RentalsManager(new EFRentalsDal());
+            var result = rManager.GetRentalDetails();
+            if (result.Success)
+            {
+                foreach (var r in result.Data)
+                {
+                    
+                    Console.WriteLine(r);
+                }
+            }
+
+
         }
 
         private static void AracEkle(Car car)
