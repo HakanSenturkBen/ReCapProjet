@@ -17,6 +17,7 @@ namespace Businness.Constant
 
         public static string DirectoryNotExists = "Resimler klasörü bulunamadı";
 
-        public static string ImageCountOverflow { get; internal set; }
+        public static string ImageCountOverflow = "Resim sayısı olası sınırı aştı";
+        public static string DefaultImageName = "DefaultImage.Jpg";
     }
 }

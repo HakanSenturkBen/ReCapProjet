@@ -16,10 +16,12 @@ namespace Businness.Concrete
     {
         const string path = "Pictures";
         ICarImagesDal _carImageDal;
+        ICarService _carService;
 
-        public CarImagesManager(ICarImagesDal carImageDal)
+        public CarImagesManager(ICarImagesDal carImageDal, ICarService carService)
         {
             _carImageDal = carImageDal;
+            _carService = carService;
         }
 
 
@@ -76,11 +78,16 @@ namespace Businness.Concrete
         public IDataResult<List<CarImages>> GetAll()
         {
             //eğer arabaya ait resim eklenmemiş ise şirket logosu araç resmi olsun
+            
+            
             return new SuccessDataResult<List<CarImages>>(_carImageDal.GetAll(), Messages.Listed);
         }
+        
+      
 
         public IDataResult<CarImages> GetById(int imageId)
         {
+            
             return new SuccessDataResult<CarImages>(_carImageDal.Get(c => c.ImageId == imageId), Messages.Listed);
         }
 
@@ -90,5 +97,27 @@ namespace Businness.Concrete
             return new SuccessResult(Messages.Updated);
 
         }
+
+        public IDataResult<List<CarImages>> GetAllByCarId(Car car)
+        {
+            var result = BusinessRules.Run(CheckImageExist(car));
+            if (result!=null)
+            {
+                var varList = new List<CarImages> { new CarImages { ImagePath = path + Messages.DefaultImageName } };
+            }
+            return new SuccessDataResult<List<CarImages>>(_carImageDal.GetAll(x=>x.CarId==car.CarID), Messages.Listed);
+        }
+
+
+        private IResult CheckImageExist(Car car)
+        {
+            var result=_carImageDal.GetAll(x => x.CarId == car.CarID);
+            if (result!=null)
+            {
+                return new SuccessResult();
+            }
+            return new ErrorResult();
+        }
+
     }
 }

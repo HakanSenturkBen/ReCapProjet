@@ -9,6 +9,7 @@ namespace Businness.Abstract
     public interface ICarImagesService
     {
         IDataResult<List<CarImages>> GetAll();
+        IDataResult<List<CarImages>> GetAllByCarId(Car car);
         IDataResult<CarImages> GetById(int imageId);
         IResult Add(CarImages images);
         IResult Update(CarImages images);
