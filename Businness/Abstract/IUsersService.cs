@@ -1,4 +1,5 @@
-﻿using Core.Utilities.Result;
+﻿using Core.Entities.Concrete;
+using Core.Utilities.Result;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -13,5 +14,6 @@ namespace Businness.Abstract
         IResult Add(Users user);
         IResult Update(Users user);
         IResult Delete(Users user);
+     
     }
 }

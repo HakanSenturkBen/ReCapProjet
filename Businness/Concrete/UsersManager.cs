@@ -49,5 +49,7 @@ namespace Businness.Concrete
             _usersDal.Update(user);
             return new SuccessResult(Messages.Updated);
         }
+
+        
     }
 }

@@ -1,4 +1,5 @@
-﻿using Businness.Constant;
+﻿using Business.BusinessAspects.Autofac;
+using Businness.Constant;
 using Businness.ValidationRules.FluentValidation;
 using Core.Aspect.Autofac.Validation;
 using Core.DataAccess;
@@ -22,7 +23,7 @@ namespace Businness.Concrete
             _carDal = carDal;
         }
 
-
+        [SecuredOperation("car.add,admin")]
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
@@ -35,7 +36,7 @@ namespace Businness.Concrete
             _carDal.Delete(car);
             return new SuccessResult(Messages.Deleted);
         }
-
+        [SecuredOperation("car.add,admin")]
         public IDataResult<List<Car>> GetAll()
         {
             if (DateTime.Now.Hour>22|| DateTime.Now.Hour <8)
