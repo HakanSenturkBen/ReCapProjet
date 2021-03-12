@@ -50,6 +50,8 @@ namespace WebAPI
             //services.AddSingleton<IColorsDal, EFColorsDal>();
             //services.AddSingleton<IRentalsDal, EFRentalsDal>();
             //services.AddSingleton<IUsersDal, EFUsersDal>();
+
+            services.AddCors();
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -77,6 +79,8 @@ namespace WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+       
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 
             app.UseHttpsRedirection();
 

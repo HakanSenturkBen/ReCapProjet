@@ -3,6 +3,7 @@ using Businness.Constant;
 using Core.Utilities.Result;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -42,6 +43,11 @@ namespace Businness.Concrete
         public IDataResult<Users> GetById(int userID)
         {
             return new SuccessDataResult<Users>(_usersDal.Get(x => x.UserID == userID));
+        }
+
+        public IDataResult<List<CustomerDetailDto>> GetCustomerDetails()
+        {
+            return new SuccessDataResult<List<CustomerDetailDto>>(_usersDal.GetCustomerDetails());
         }
 
         public IResult Update(Users user)
