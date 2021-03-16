@@ -53,6 +53,29 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("Getbycolor")]
+        public IActionResult GetByColor(int id)
+        {
+            var result = _carService.GetAllByColor(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("Getbybrand")]
+        public IActionResult GetByBrand(int id)
+        {
+            var result = _carService.GetAllByBrand(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+
         [HttpDelete("Delete")]
         public IActionResult Delete(Car car)
         {
@@ -86,6 +109,27 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("GetDetailbycolor")]
+        public IActionResult GetDetailsByColor(int id)
+        {
+            var result = _carService.GetCarDetailsbyColor(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("GetDetailbybrand")]
+        public IActionResult GetDetailsByBrand(int id)
+        {
+            var result = _carService.GetCarDetailsbyBrand(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
 
     }
 }

@@ -8,9 +8,13 @@ namespace Businness
     public interface ICarService
     {
         IDataResult<List<Car>> GetAll();
-        IDataResult<List<Car>> GetAllByBrandsOrColor(int ID);
+        IDataResult<List<Car>> GetAllByBrand(int ID);
+        IDataResult<List<Car>> GetAllByColor(int ID);
         IDataResult<List<Car>> GetAllByDailyPrice(decimal min, decimal max);
         IDataResult<List<CarDetailDto>> GetCarDetails();
+        IDataResult<List<CarDetailDto>> GetCarDetailsbyColor(int id);
+        IDataResult<List<CarDetailDto>> GetCarDetailsbyBrand(int id);
+
         IDataResult<Car> GetById(int CarID);
         IResult Add(Car car);
         IResult Update(Car car);

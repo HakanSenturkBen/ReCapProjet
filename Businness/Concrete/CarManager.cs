@@ -52,7 +52,7 @@ namespace Businness.Concrete
             return new SuccessResult(Messages.Deleted);
         }
 
-        [SecuredOperation("car.add,admin")]
+      
         [CacheAspect]
         public IDataResult<List<Car>> GetAll()
         {
@@ -64,11 +64,15 @@ namespace Businness.Concrete
                 return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.Listed);
         }
 
-        public IDataResult<List<Car>> GetAllByBrandsOrColor(int ID)
+        public IDataResult<List<Car>> GetAllByColor(int ID)
         {
            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p=>p.ColorID==ID));
         }
 
+        public IDataResult<List<Car>> GetAllByBrand(int ID)
+        {
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.BrandID == ID));
+        }
         public IDataResult<List<Car>> GetAllByDailyPrice(decimal min, decimal max)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.DailyPrice >= min && p.DailyPrice<=max));
@@ -90,6 +94,17 @@ namespace Businness.Concrete
         {
             _carDal.Update(car);
             return new SuccessResult(Messages.Updated);
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarDetailsbyColor(int id)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailsbyColor(id));
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarDetailsbyBrand(int id)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailsbyBrand(id));
+
         }
     }
 }

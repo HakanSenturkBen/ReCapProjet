@@ -23,7 +23,7 @@ namespace DataAccess.Concrete.EntityFrameWork
             modelBuilder.Entity<Rentals>().HasKey(x => x.RentID);
             modelBuilder.Entity<Users>().HasKey(x => x.UserID);
             modelBuilder.Entity<CarImages>().HasKey(x => x.ImageId);
-
+            modelBuilder.Entity<CarImagePath>().HasKey(x => x.Id);
 
         }
         public DbSet<Car> Car { get; set; }
@@ -36,6 +36,7 @@ namespace DataAccess.Concrete.EntityFrameWork
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+        public DbSet<CarImagePath>CarImage { get; set; }
 
     }
 
