@@ -10,6 +10,7 @@ import { BrandService } from 'src/app/services/brand.service';
 export class BrandComponent implements OnInit {
 
   brands:Brand[]=[];
+  filterText="";
 
   currentBrand:Brand | undefined
 
@@ -34,7 +35,7 @@ export class BrandComponent implements OnInit {
 
   getCurrentBrandClass(brand:Brand){
     if(brand==this.currentBrand){
-      return "list-group-item active"
+      return "list-group-item"
     }
     else{
       return "list-group-item"
@@ -44,7 +45,7 @@ export class BrandComponent implements OnInit {
 
   getAllBrandClass(){
     if(!this.currentBrand){
-      return "list-group-item active"
+      return "list-group-item"
     }
     else{
       return "list-group-item"

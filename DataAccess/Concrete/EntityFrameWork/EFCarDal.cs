@@ -21,6 +21,8 @@ namespace DataAccess.Concrete.EntityFrameWork
                              join brand in context.Brands on car.BrandID equals brand.BrandID
                              join color in context.Colors on car.ColorID equals color.ColorId
                              join image in context.CarImage on car.CarID equals image.CarID
+                             join carInfo in context.CarInfoDetail on car.CarID equals carInfo.CarID
+
                              select new CarDetailDto
                              {
                                  CarID = car.CarID,
@@ -29,7 +31,16 @@ namespace DataAccess.Concrete.EntityFrameWork
                                  ModelYear = car.ModelYear,
                                  DailyPrice = car.DailyPrice,
                                  Description = car.Description,
-                                 CarImage=image.CarImage
+                                 CarImage = image.CarImage,
+                                 Manifacturer = carInfo.Manifacturer ,
+                                 Production = carInfo.Production,
+                                 Assembly = carInfo.Assembly,
+                                 Designer = carInfo.Designer,
+                                 Class = carInfo.Class,
+                                 BodyStyle = carInfo.BodyStyle,
+                                 Engine = carInfo.Engine,
+                                 PowerOut = carInfo.PowerOut,
+                                 Transmission = carInfo.Transmission
                              };
 
                 return result.ToList();
@@ -64,7 +75,7 @@ namespace DataAccess.Concrete.EntityFrameWork
                 var result = from car in context.Car
                              join brand in context.Brands on car.BrandID equals brand.BrandID
                              join color in context.Colors on car.ColorID equals color.ColorId
-                             where car.ColorID== id
+                             where car.ColorID == id
                              select new CarDetailDto
                              {
                                  CarID = car.CarID,
@@ -77,5 +88,32 @@ namespace DataAccess.Concrete.EntityFrameWork
                 return result.ToList();
             }
         }
+
+        public List<CarInfoDetail> GetCarDetailInfo(int id)
+        {
+            using (RentaCarContext context = new RentaCarContext())
+            {
+                var result = from carInfo in context.CarInfoDetail
+                             join car in context.Car on carInfo.CarID equals car.CarID
+                             join brand in context.Brands on carInfo.BrandID equals brand.BrandID
+                             join color in context.Colors on carInfo.ColorID equals color.ColorId
+                             where carInfo.CarID == id
+                             select new CarInfoDetail
+                             {
+                                 Manifacturer= "Manifacturer: "+ carInfo.Manifacturer+" made "+brand.BrandName+" " +car.CarName+" "+car.ModelYear,
+                                 Production=carInfo.Production,
+                                 Assembly=carInfo.Assembly,
+                                 Designer=carInfo.Designer,
+                                 Class=carInfo.Class,
+                                 BodyStyle=carInfo.BodyStyle+" Color: "+ color.ColorName,
+                                 Engine=carInfo.Engine,
+                                 PowerOut=carInfo.PowerOut,
+                                 Transmission=carInfo.Transmission
+
+                             };
+                return result.ToList();
+            }
+        }
+
     }
 }

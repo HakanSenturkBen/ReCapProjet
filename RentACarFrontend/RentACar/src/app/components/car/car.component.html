@@ -1,30 +1,113 @@
-<div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
-    <span class="visually-hidden">Loading...</span>
-</div>
+<h4>For rent a car, please click on car name in car list.</h4>
 
-<table *ngIf="dataLoaded==true" class="table">
+<div class="row mb-2">
+
+  <!-- seeking row -->
+  <div class="col col-6">
+    <div class="mb-1">
+      <!-- <label for="filterText" class="form-label"></label> -->
+      <input type="text " [(ngModel)]="filterText" class="form-control" id="filterText"
+        placeholder="please type name for your seeking car">
+    </div>
+  </div>
+
+  <!-- check to seeking row -->
+  <div class="col col-6">
+    <div class="mb-1" *ngIf="filterText">aranan: {{filterText}}
+    </div>
+  </div>
+  <h6>for filter check here ↓↑</h6>
+
+  <!-- filters of brand and color -->
+  <div class="row mb-3">
+    <div class="col col-4">
+      <select [(ngModel)]="filterText" class="form-select" aria-label="Default select example">
+        <option *ngFor="let brand of brands" [value]="brand.brandName">{{brand.brandName}}</option>
+      </select>
+      <h6>car name filter</h6>
+    </div>
+
+    <div class="col col-4">
+      <select [(ngModel)]="colorFilter" class="form-select" aria-label="Default select example">
+        <option *ngFor="let color of colors" [value]="color.colorName" [selected]="">{{color.colorName}}</option>
+      </select>
+      <h6>color filter</h6>
+    </div>
+
+    <!-- button -->
+    <div class="col col-4">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button *ngIf="currentCar" type="button" id="demo" class="btn btn-primary" disabled>~~~~~</button>
+        <button *ngIf="currentCar" (click)="paying()" type="button" class="btn btn-primary"> Rent a car </button>
+        <button *ngIf="currentCar" type="button" class="btn btn-primary" disabled>~~~~~</button>
+      </div>
+
+    </div>
+  </div>
+  <!-- Full screen modal -->
+
+
+  <!-- <div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div> -->
+
+  <table *ngIf="dataLoaded==true" class="table">
     <thead>
       <tr>
-        <th>Marka</th>
-        <th>Renk</th>
-        <th>Model</th>
-        <th>Kira</th>
-        <th>Açıklama</th>
+        <th>Brand</th>
+        <th>Color</th>
+        <th>Model Year</th>
+        <th>Daily Price</th>
+        <th>Choose</th>
+        <th></th>
       </tr>
     </thead>
-    <tr 
-        
-        *ngFor="let car of cars">
-        <td        (click)="setCurrentCar(car)"
-        routerLink="cars/{{car.carID}}">{{car.brandName}}</td>
+    <tbody>
+      <tr *ngFor="let car of cars | filterPipeCar:filterText |filterPipeCarColor:colorFilter">
+        <td (click)="setCurrentCar(car)" routerLink="cars/{{car.carID}}">{{car.brandName}}</td>
         <td>{{car.colorName}}</td>
         <td>{{car.modelYear}}</td>
-        <td>{{car.dailyPrice}}</td>
-        <td>{{car.description}}</td>
-        
-    </tr>
-</table>
+        <td>{{car.dailyPrice | currency : "₺"}}</td>
+        <!-- <td>{{car.description}} </td> -->
+        <td><button (click)="checkCarFreeOrNot(car)" type="button" class="btn btn-success btn-xs">kirala</button></td>
+      </tr>
+    </tbody>
+  </table>
 
-<img *ngIf="currentCar" src={{imagePath}} width="350" height="150">
-        
+  <body *ngIf="currentCar">
+    <div class="row mb-2">
+      <div class="col col-4">
+        <img src={{imagePath}} width="280" height="150" alt="{{carinfo}}">
+        <dl>
+          <dt>{{currentCar.brandName}} "properties"
+          <dd> {{currentCar.brandName}} {{currentCar.colorName}} {{currentCar.modelYear}} {{currentCar.description}}
+            {{currentCar.manifacturer}} product by {{currentCar.production}} assembly: {{currentCar.assembly}} 
+            design by {{currentCar.designer}} {{currentCar.class}} {{currentCar.bodyStyle}} engine: {{currentCar.engine}}
+            {{currentCar.powerOut}} transmission: {{currentCar.transmission}}
+        </dl>
+      </div>
+      <div class="col col-8">
 
+        <div class="input-group">
+          <span class="input-group-text">First and last name</span>
+          <input  id="fistname" type="text" aria-label="First name" class="form-control">
+          <input type="text" aria-label="Last name" class="form-control">
+          
+        </div>
+        <br>
+        <div class="input-group">
+          
+          <span class="input-group-text">start vs return date </span>
+          <input type="text" aria-label="star" class="form-control" [value]=bugun()>
+          <input type="text" aria-label="return" class="form-control">
+        </div>
+        <br>
+
+        <div class="input-group">
+          <span class="input-group-text">credit or debit card </span>
+          <input type="text" aria-label="star" class="form-control" placeholder="xxxx xxxx xxxx xxxx xxxx">
+          <input type="text" aria-label="return" class="form-control" placeholder="xxxx xxxx xxxx xxxx xxxx">
+        </div>
+      </div>
+    </div>
+  </body>

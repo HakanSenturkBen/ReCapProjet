@@ -1,11 +1,24 @@
+
+<div class="mb-3">
+  <label for="filterText" class="form-label">brand search</label>
+  <input type="text " [(ngModel)]="filterText" class="form-control" id="filterText" 
+         placeholder="brand of car">
+</div>
+<div *ngIf="filterText" class="alert alert-success">
+    aranan: {{filterText}}
+</div>
+
 <Ul class="list group">
-  <li [class]="getAllBrandClass()" routerLink="/Cars">Tam Liste</li>
+  <li [class]="getAllBrandClass()" routerLink="/Cars">Full list</li>
   <li 
     (click)="setCurrentBrand(brand)" 
     routerLink="Cars/brand/{{brand.brandID}}"
-    *ngFor="let brand of brands"
+    *ngFor="let brand of brands |filterPipeBrand :filterText"
     [class]="getCurrentBrandClass(brand)">{{brand.brandName}}</li>
-    <h5 *ngIf="currentBrand">{{currentBrand.brandName}} seçtiniz</h5>
+    <h5 *ngIf="currentBrand">{{currentBrand.brandName}} your choice</h5>
 </Ul>
+<br>
+<br>
+<br>
 
 

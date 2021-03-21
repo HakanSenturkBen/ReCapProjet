@@ -14,7 +14,7 @@ namespace Businness
         IDataResult<List<CarDetailDto>> GetCarDetails();
         IDataResult<List<CarDetailDto>> GetCarDetailsbyColor(int id);
         IDataResult<List<CarDetailDto>> GetCarDetailsbyBrand(int id);
-
+        IDataResult<List<CarInfoDetail>> GetCarDetailInfo(int id);
         IDataResult<Car> GetById(int CarID);
         IResult Add(Car car);
         IResult Update(Car car);

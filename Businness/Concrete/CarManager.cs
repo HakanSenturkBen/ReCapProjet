@@ -106,5 +106,10 @@ namespace Businness.Concrete
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailsbyBrand(id));
 
         }
+
+        public IDataResult<List<CarInfoDetail>> GetCarDetailInfo(int id)
+        {
+            return new SuccessDataResult<List<CarInfoDetail>>(_carDal.GetCarDetailInfo(id));
+        }
     }
 }

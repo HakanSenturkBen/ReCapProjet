@@ -11,6 +11,8 @@ export class ColorComponent implements OnInit {
 
   dataLoaded=false;
 
+  filterText=""
+
   colors:Color[]=[];
 
   currentColor:Color | undefined;
@@ -35,7 +37,7 @@ export class ColorComponent implements OnInit {
 
   getCurrentColorClass(color:Color){
     if(color==this.currentColor){
-      return "list-group-item active"
+      return "list-group-item"
     }
     else{
       return "list-group-item"
@@ -45,7 +47,7 @@ export class ColorComponent implements OnInit {
 
   getAllColorClass(){
     if(!this.currentColor){
-      return "list-group-item active"
+      return "list-group-item"
     }
     else{
       return "list-group-item"

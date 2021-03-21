@@ -5,6 +5,15 @@ export interface Car{
     modelYear:string; 
     dailyPrice:number;
     description:string;
-    carImage:string
+    carImage:string;
+    manifacturer:string;
+    production: string;
+    assembly: string;
+    designer: string;
+    class: string;
+    bodyStyle: string;
+    engine: string;
+    powerOut: string;
+    transmission:string;
     
 }

@@ -9,4 +9,5 @@ export interface Rental{
     dailyPrice : number 
     rentDate: string;
     returnDate:string;
+    checkReturn:boolean;
 }

@@ -17,6 +17,7 @@ namespace Entities.DTOs
         public DateTime RentDate { get; set; }
         public DateTime ReturnDate { get; set; }
         public decimal Totaldebt { get; set; }
+        public bool checkReturn {get; set;}
 
         public override string ToString() => $"{CustomerName} {CarBrand} {CarName} {CarColor} {ModelYear} {Totaldebt}";
     }

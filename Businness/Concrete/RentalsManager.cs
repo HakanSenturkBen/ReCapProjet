@@ -52,6 +52,11 @@ namespace Businness.Concrete
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalsDal.GetRentalDetails());
         }
 
+        public IDataResult<List<RentalDetailDto>> GetRentalDetailsCarId(int CarID)
+        {
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalsDal.GetRentalDetailsCarId(CarID));
+        }
+
         public IResult Update(Rentals rent)
         {
             _rentalsDal.Update(rent);

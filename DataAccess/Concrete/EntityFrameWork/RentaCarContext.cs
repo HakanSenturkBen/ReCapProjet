@@ -1,5 +1,6 @@
 ﻿using Core.Entities.Concrete;
 using Entities.Concrete;
+using Entities.DTOs;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,9 @@ namespace DataAccess.Concrete.EntityFrameWork
             modelBuilder.Entity<Users>().HasKey(x => x.UserID);
             modelBuilder.Entity<CarImages>().HasKey(x => x.ImageId);
             modelBuilder.Entity<CarImagePath>().HasKey(x => x.Id);
+            modelBuilder.Entity<CarInfoDetail>().HasKey(x => x.Id);
+            modelBuilder.Entity<BankPaymentService>().HasKey(x => x.BankId);
+
 
         }
         public DbSet<Car> Car { get; set; }
@@ -37,6 +41,8 @@ namespace DataAccess.Concrete.EntityFrameWork
         public DbSet<User> User { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
         public DbSet<CarImagePath>CarImage { get; set; }
+        public DbSet<CarInfoDetail>CarInfoDetail { get; set; }
+        public DbSet<BankPaymentService> BankPaymentServices { get; set; }
 
     }
 
