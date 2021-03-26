@@ -1,0 +1,205 @@
+<div class="row 1">
+</div>
+
+<div class="row mb-1">
+
+    <body *ngIf="dataLoaded==true">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Brand</th>
+                    <th>Color</th>
+                    <th>ModelYear</th>
+                    <th>DailyPrice</th>
+                    <th>Descriptions</th>
+                    <th>faktory</th>
+                    <th>Choose</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr n *ngFor="let car of cars ">
+                    <td (click)="setCurrentCar(car)" routerLink="cars/{{car.carID}}">{{car.brandName}}</td>
+                    <td>{{car.colorName}}</td>
+                    <td>{{car.modelYear}}</td>
+                    <td>{{car.dailyPrice | currency : "₺"}}</td>
+                    <td>{{car.description}} </td>
+                    <td>{{car.manifacturer}}</td>
+                    <td><button (click)="setCurrentCar(car)" type="button"
+                            class="btn btn-success btn-xs">update / delete</button></td>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </body>
+
+    <body *ngIf="currentCar">
+
+        <h5> </h5>
+
+        <body class="bg-light">
+            <div class="container">
+                <main>
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="py-5 text-center">
+                                <img class="d-block mx-auto mb-4" src="{{imagePath}}" alt="" width="252" height="117">
+                                <dl>
+                                    <dt>{{currentCar.brandName}} "properties"
+                                    <dd> {{currentCar.brandName}} {{currentCar.colorName}} {{currentCar.modelYear}}
+                                        {{currentCar.description}}{{currentCar.manifacturer}} product by {{currentCar.production}}
+                                        assembly:{{currentCar.assembly}} design by {{currentCar.designer}} {{currentCar.class}}
+                                        {{currentCar.bodyStyle}} engine: {{currentCar.engine}} {{currentCar.powerOut}}
+                                        transmission: {{currentCar.transmission}}
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-lg-6 order-md-last">
+                            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                                
+                            </h4>
+                            <ul class="list-group mb-3">
+                                <li class="list-group-item d-flex justify-content-between lh-sm">
+                                    <div>
+                                        <h6 class="my-2">{{currentCar.brandName}} {{currentCar.colorName    }}</h6>
+                                        <small class="text-muted">brand color and model year</small>
+                                    </div>
+                                    <span class="text-muted">{{currentCar.modelYear}}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between lh-sm">
+                                    <div>
+                                        <h6 class="my-2">{{currentCar.description}}</h6>
+                                        <small class="text-muted">description</small>
+                                    </div>
+                                    <span class="text-muted">{{currentCar.production}}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between lh-sm">
+                                    <div>
+                                        <h6 class="my-2">{{currentCar.assembly}}</h6>
+                                        <small class="text-muted">assembly design by</small>
+                                    </div>
+                                    <span class="text-muted">{{currentCar.designer}}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between lh-sm">
+                                    <div>
+                                        <h6 class="my-2">{{currentCar.class}}</h6>
+                                        <small class="text-muted">class body style</small>
+                                    </div>
+                                    <span class="text-muted">{{currentCar.bodyStyle}}</span>
+                                </li>
+
+                                <li class="list-group-item d-flex justify-content-between lh-sm">
+                                    <div>
+                                        <h6 class="my-2">{{currentCar.engine}} {{currentCar.powerOut}}</h6>
+                                        <small class="text-muted">engine power out transmission</small>
+                                    </div>
+                                    <span class="text-muted">{{currentCar.transmission}}</span>
+                                </li>
+                            </ul>
+
+                        </div>
+                        
+                    </div>
+                    <hr class="my-4">
+                    <div class="row ">
+                        <div class="col-md-7 col-lg-12">
+                            <div class="py-5 text-center"><h4 class="mb-3">car data recording</h4></div>
+                            <form class="needs-validation" novalidate>
+                                <div class="row g-2">
+                                    <div class="col-sm-3">
+                                        <label for="brandName" class="form-label">Brand name</label>
+                                        <input type="text" class="form-control" id="brandName" placeholder="{{currentCar.brandName}}" value=""
+                                            required>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <label for="colorName" class="form-label">Color name</label>
+                                        <input type="text" class="form-control" id="colorName" placeholder="{{currentCar.colorName}}" value=""
+                                            required>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <label for="manifacturer" class="form-label">manifacturer</label>
+                                        <input type="text" class="form-control" id="manifacturer" placeholder="{{currentCar.manifacturer}}" value=""
+                                            required>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <label for="production" class="form-label">production</label>
+                                        <input type="text" class="form-control" id="production" placeholder="{{currentCar.production}}" value=""
+                                            required>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <label for="assembly" class="form-label">assembly</label>
+                                        <input type="text" class="form-control" id="assembly" placeholder="{{currentCar.assembly}}" value=""
+                                            required>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <label for="designer" class="form-label">assembly</label>
+                                        <input type="text" class="form-control" id="designer" placeholder="{{currentCar.designer}}" value=""
+                                            required>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <label for="class" class="form-label">assembly</label>
+                                        <input type="text" class="form-control" id="class" placeholder="{{currentCar.class}}" value=""
+                                            required>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <label for="bodystyle" class="form-label">assembly</label>
+                                        <input type="text" class="form-control" id="bodystyle" placeholder="{{currentCar.bodyStyle}}" value=""
+                                            required>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <label for="engine" class="form-label">assembly</label>
+                                        <input type="text" class="form-control" id="engine" placeholder="{{currentCar.engine}}" value=""
+                                            required>
+                                    </div>
+                                    
+                                    <div class="col-sm-3">
+                                        <label for="powerOut" class="form-label">assembly</label>
+                                        <input type="text" class="form-control" id="powerOut" placeholder="{{currentCar.powerOut}}" value=""
+                                            required>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <label for="transmission" class="form-label">assembly</label>
+                                        <input type="text" class="form-control" id="transmission" placeholder="{{currentCar.transmission}}" value=""
+                                            required>
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        <label for="brands" class="form-label">brands</label>
+                                        <select class="form-select" id="brands" required>
+                                            <option value="">Choose...</option>
+                                            <option *ngFor="let brand of brands">{{brand.brandName}}</option>
+                                        </select>
+                                        
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label for="colors" class="form-label">Colors</label>
+                                        <select class="form-select" id="colors" required>
+                                            <option value="">Choose...</option>
+                                            <option *ngFor="let color of colors">{{color.colorName}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button class="w-100 btn btn-primary btn-lg" type="submit">DATA UPDATE</button>
+                            </form>
+                        </div>
+                    </div>
+                </main>
+                <footer class="my-5 pt-5 text-muted text-center text-small">
+                    <p class="mb-1">&copy; 2017–2021 Company Name</p>
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a href="#">Privacy</a></li>
+                        <li class="list-inline-item"><a href="#">Terms</a></li>
+                        <li class="list-inline-item"><a href="#">Support</a></li>
+                    </ul>
+                </footer>
+            </div>

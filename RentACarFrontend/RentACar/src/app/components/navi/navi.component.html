@@ -1,7 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <a  routerLink="datamanager" class="navbar-brand" href="#">DataManager</a>
+      <button  class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+              data-bs-target="#navbarSupportedContent" 
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -26,10 +28,20 @@
           <li class="nav-item">
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
           </li>
+          <input class="form-control me-2" type="search" placeholder="" aria-label="Search">
         </ul>
         <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <input class="form-control me-2" type="search" placeholder={{tespit}} aria-label="Search">
+          </ul>
+        <body>
+          <button (click)="refresh()" class="btn btn-outline-success" type="mat-raised-button">Refresh page</button>
+          <button routerLink="cars/add"  class="btn btn-outline-success" type="submit">Add new car</button>
+          <button routerLink="datamanager"  class="btn btn-outline-success" type="submit">Data manager</button>
+          
+        </body>  
+          
         </form>
       </div>
     </div>

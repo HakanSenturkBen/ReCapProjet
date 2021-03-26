@@ -13,17 +13,17 @@ namespace WebAPI.Controllers
     [ApiController]
     public class ColorsController : ControllerBase
     {
-        IColorsService _colorsService;
+        IColorService _colorService;
 
-        public ColorsController(IColorsService colorsService)
+        public ColorsController(IColorService colorService)
         {
-            _colorsService = colorsService;
+            _colorService = colorService;
         }
 
         [HttpGet("Getall")]
         public IActionResult GetAll()
         {
-            var result = _colorsService.GetAll();
+            var result = _colorService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -31,9 +31,9 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("Add")]
-        public IActionResult Add(Colors colors)
+        public IActionResult Add(Color colors)
         {
-            var result = _colorsService.Add(colors);
+            var result = _colorService.Add(colors);
             if (result.Success)
             {
                 return Ok(result);
@@ -44,7 +44,7 @@ namespace WebAPI.Controllers
         [HttpGet("Getbyid")]
         public IActionResult GetById(int id)
         {
-            var result = _colorsService.GetById(id);
+            var result = _colorService.GetById(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -53,9 +53,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("Delete")]
-        public IActionResult Delete(Colors color)
+        public IActionResult Delete(Color color)
         {
-            var result = _colorsService.Delete(color);
+            var result = _colorService.Delete(color);
             if (result.Success)
             {
                 return Ok(result);
@@ -64,9 +64,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("Updete")]
-        public IActionResult Update(Colors color)
+        public IActionResult Update(Color color)
         {
-            var result = _colorsService.Update(color);
+            var result = _colorService.Update(color);
             if (result.Success)
             {
                 return Ok(result);

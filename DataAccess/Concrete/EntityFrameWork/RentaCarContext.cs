@@ -19,7 +19,7 @@ namespace DataAccess.Concrete.EntityFrameWork
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Brands>().HasKey(x => x.BrandID);
-            modelBuilder.Entity<Colors>().HasKey(x => x.ColorId);
+            modelBuilder.Entity<Color>().HasKey(x => x.ColorId);
             modelBuilder.Entity<Customers>().HasKey(x => x.userID);
             modelBuilder.Entity<Rentals>().HasKey(x => x.RentID);
             modelBuilder.Entity<Users>().HasKey(x => x.UserID);
@@ -31,7 +31,7 @@ namespace DataAccess.Concrete.EntityFrameWork
 
         }
         public DbSet<Car> Car { get; set; }
-        public DbSet<Colors> Colors { get; set; }
+        public DbSet<Color> Colors { get; set; }
         public DbSet<Brands> Brands { get; set; }
         public DbSet<Customers> Customers { get; set; }
         public DbSet<Rentals> Rentals { get; set; }

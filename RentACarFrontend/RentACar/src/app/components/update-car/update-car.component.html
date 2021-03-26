@@ -1,0 +1,58 @@
+<div class="content">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 clas="title">Update to car</h5>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="carAddForm">
+                        <div class="mb-2">
+                            <div class="form-group">
+                                <select class="form-select form-select-sm" formControlName="brandName"
+                                    aria-label="Default select example" id="brandID">
+                                    <option *ngFor="let brand of brands">{{brand.brandID}} {{brand.brandName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="form-group">
+                                <input type="text" id="carName" formControlName="carName" size="27"
+                                    placeholder="car model name" />
+                            </div>
+                        </div>
+
+                        <div class="mb-2">
+                            <div class="form-group">
+                                <select class="form-select form-select-sm" formControlName="colorName"
+                                    aria-label="Default select example" id="colorID">
+                                    <option *ngFor="let color of colors">
+                                        {{color.colorId}} {{color.colorName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="form-group">
+                                <input type="text" id="modelYear" formControlName="modelYear" size="27"
+                                    placeholder="car model year" />
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="form-group">
+                                <input type="number" id="dailyPrice" formControlName="dailyPrice" size="15"
+                                    placeholder="input daily price please" />
+                            </div>
+                        </div>
+
+                        <div class="mb-2">
+                            <div class="form-group">
+                                <input type="text" id="description" formControlName="description" size="27"
+                                    placeholder="car description" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <button class="btn btn-outline-primary" (click)="add()"> Add </button>
+                <br>
+                <button class="btn btn-outline-primary" (click)="update()"> Update or delete </button>

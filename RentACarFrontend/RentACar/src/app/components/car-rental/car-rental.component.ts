@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Rental } from 'src/app/models/rental';
 import { RentalService } from 'src/app/services/rental.service';
+
 
 @Component({
   selector: 'app-car-rental',
@@ -13,7 +15,7 @@ export class CarRentalComponent implements OnInit {
 
   dataLoaded=false;
 
-  constructor(private rentalService:RentalService) { }
+  constructor(private rentalService:RentalService, private toastrService:ToastrService) { }
 
   ngOnInit(): void {
     this.getRentals();
@@ -22,8 +24,9 @@ export class CarRentalComponent implements OnInit {
   getRentals(){
     this.rentalService.getRentals().subscribe(response=>{
       this.rentals=response.data
-      this.dataLoaded=true;
-    })
+      console.log(this.rentals)
+      this.dataLoaded=true});
+      
 
 
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-navi',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NaviComponent implements OnInit {
 
+  tespit:string;
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  refresh(): void {
+    window.location.reload();
+    this.tespit="Refreshed";
+}
 
 }

@@ -27,8 +27,8 @@ export class CarComponent implements OnInit {
   colors:Color[]=[];
   rental:Rental[]=[];
   dataLoaded=false;
-  currentCar:Car | undefined;
-  carinfo:string| undefined;
+  currentCar:Car ;
+  carinfo:string; 
   filterText="";
   colorFilter="";
   imagePath:string=""
@@ -75,6 +75,11 @@ export class CarComponent implements OnInit {
       this.cars=response.data
       this.dataLoaded=true;
     })
+  }
+
+  pushCars():Car[]{
+    this.getCars();
+    return this.cars
   }
 
   getCarsByBrand(brandID:number){

@@ -31,16 +31,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         
-        [HttpPost("Add")]
-        public IActionResult Add(Car car)
-        {
-            var result = _carService.Add(car);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
+        
 
         [HttpGet("Getbyid")]
         public IActionResult GetById(int id)
@@ -135,6 +126,17 @@ namespace WebAPI.Controllers
         public IActionResult GetDetailInfo(int id)
         {
             var result = _carService.GetCarDetailInfo(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost("Add")]
+        public IActionResult Add(Car car)
+        {
+            var result = _carService.Add(car);
             if (result.Success)
             {
                 return Ok(result);

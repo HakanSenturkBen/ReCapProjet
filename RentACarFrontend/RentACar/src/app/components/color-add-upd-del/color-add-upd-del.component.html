@@ -1,0 +1,28 @@
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 clas="title">Add new Color</h5>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="colorAddForm">
+                        <div class="mb-2">
+                            <div class="form-group">
+                                <input type="text" id="colorName" formControlName="colorName" size="27"
+                                    placeholder="Color name" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+
+                <button class="btn btn-outline-primary" (click)="add()"> Add </button>
+              
+
+            </div>
+        </div>
+    </div>
+</div>

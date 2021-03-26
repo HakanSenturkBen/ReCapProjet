@@ -27,8 +27,8 @@ namespace Businness.DependencyResolvers.Autofac
             builder.RegisterType<BrandsManager>().As<IBrandsService>().SingleInstance();
             builder.RegisterType<EFBrandsDal>().As<IBrandsDal>().SingleInstance();
 
-            builder.RegisterType<ColorsManager>().As<IColorsService>().SingleInstance();
-            builder.RegisterType<EFColorsDal>().As<IColorsDal>().SingleInstance();
+            builder.RegisterType<ColorsManager>().As<IColorService>().SingleInstance();
+            builder.RegisterType<EFColorsDal>().As<IColorDal>().SingleInstance();
 
             builder.RegisterType<RentalsManager>().As<IRentalsService>().SingleInstance();
             builder.RegisterType<EFRentalsDal>().As<IRentalsDal>().SingleInstance();

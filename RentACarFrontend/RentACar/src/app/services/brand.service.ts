@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Brand } from '../models/brand';
@@ -11,11 +11,18 @@ import { ListResponseModel } from '../models/listResponseModel';
 })
 export class BrandService {
 
-  apiUrl="https://localhost:44335/api/Brands/Getall";
+  apiUrl="https://localhost:44335/api/";
 
   constructor(private httpClient:HttpClient) { }
 
   getBrands():Observable<ListResponseModel<Brand>>{
-    return this.httpClient.get<ListResponseModel<Brand>>(this.apiUrl);
+    return this.httpClient.get<ListResponseModel<Brand>>(this.apiUrl+"Brands/Getall");
+  }
+
+  add(brand:Brand):Observable<ListResponseModel<Brand>>{
+    let params = JSON.stringify(brand);
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+
+    return this.httpClient.post<ListResponseModel<Brand>>(this.apiUrl+"Brands/add",params, {headers:headers});
   }
 }

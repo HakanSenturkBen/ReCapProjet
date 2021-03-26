@@ -1,25 +1,19 @@
 <h4>For rent a car, please click on car name in car list.</h4>
 
-<div class="row mb-2">
+<div class="row mb-1">
 
-  <!-- seeking row -->
-  <div class="col col-6">
-    <div class="mb-1">
-      <!-- <label for="filterText" class="form-label"></label> -->
-      <input type="text " [(ngModel)]="filterText" class="form-control" id="filterText"
-        placeholder="please type name for your seeking car">
-    </div>
+  <div class="mb-1">
+    <!-- <label for="filterText" class="form-label"></label> -->
+    <input type="text " [(ngModel)]="filterText" class="form-control" id="filterText"
+      placeholder="please type name for your seeking car">
   </div>
 
-  <!-- check to seeking row -->
-  <div class="col col-6">
-    <div class="mb-1" *ngIf="filterText">aranan: {{filterText}}
-    </div>
+  <div class="mb-1" *ngIf="filterText">aranan: {{filterText}}
   </div>
   <h6>for filter check here ↓↑</h6>
 
   <!-- filters of brand and color -->
-  <div class="row mb-3">
+  <div class="row mb-2">
     <div class="col col-4">
       <select [(ngModel)]="filterText" class="form-select" aria-label="Default select example">
         <option *ngFor="let brand of brands" [value]="brand.brandName">{{brand.brandName}}</option>
@@ -36,20 +30,10 @@
 
     <!-- button -->
     <div class="col col-4">
-      <div class="btn-group" role="group" aria-label="Basic example">
-        <button *ngIf="currentCar" type="button" id="demo" class="btn btn-primary" disabled>~~~~~</button>
-        <button *ngIf="currentCar" (click)="paying()" type="button" class="btn btn-primary"> Rent a car </button>
-        <button *ngIf="currentCar" type="button" class="btn btn-primary" disabled>~~~~~</button>
-      </div>
 
     </div>
   </div>
-  <!-- Full screen modal -->
 
-
-  <!-- <div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
-    <span class="visually-hidden">Loading...</span>
-</div> -->
 
   <table *ngIf="dataLoaded==true" class="table">
     <thead>
@@ -58,6 +42,7 @@
         <th>Color</th>
         <th>Model Year</th>
         <th>Daily Price</th>
+        <th>Descriptions</th>
         <th>Choose</th>
         <th></th>
       </tr>
@@ -68,8 +53,8 @@
         <td>{{car.colorName}}</td>
         <td>{{car.modelYear}}</td>
         <td>{{car.dailyPrice | currency : "₺"}}</td>
-        <!-- <td>{{car.description}} </td> -->
-        <td><button (click)="checkCarFreeOrNot(car)" type="button" class="btn btn-success btn-xs">kirala</button></td>
+        <td>{{car.description}} </td>
+        <td><button (click)="checkCarFreeOrNot(car)" type="button" class="btn btn-success btn-xs">rental</button></td>
       </tr>
     </tbody>
   </table>
@@ -81,33 +66,78 @@
         <dl>
           <dt>{{currentCar.brandName}} "properties"
           <dd> {{currentCar.brandName}} {{currentCar.colorName}} {{currentCar.modelYear}} {{currentCar.description}}
-            {{currentCar.manifacturer}} product by {{currentCar.production}} assembly: {{currentCar.assembly}} 
-            design by {{currentCar.designer}} {{currentCar.class}} {{currentCar.bodyStyle}} engine: {{currentCar.engine}}
+            {{currentCar.manifacturer}} product by {{currentCar.production}} assembly: {{currentCar.assembly}}
+            design by {{currentCar.designer}} {{currentCar.class}} {{currentCar.bodyStyle}} engine:
+            {{currentCar.engine}}
             {{currentCar.powerOut}} transmission: {{currentCar.transmission}}
         </dl>
       </div>
       <div class="col col-8">
 
-        <div class="input-group">
-          <span class="input-group-text">First and last name</span>
-          <input  id="fistname" type="text" aria-label="First name" class="form-control">
-          <input type="text" aria-label="Last name" class="form-control">
-          
-        </div>
-        <br>
-        <div class="input-group">
-          
-          <span class="input-group-text">start vs return date </span>
-          <input type="text" aria-label="star" class="form-control" [value]=bugun()>
-          <input type="text" aria-label="return" class="form-control">
-        </div>
-        <br>
+        <hr class="my-4">
 
-        <div class="input-group">
-          <span class="input-group-text">credit or debit card </span>
-          <input type="text" aria-label="star" class="form-control" placeholder="xxxx xxxx xxxx xxxx xxxx">
-          <input type="text" aria-label="return" class="form-control" placeholder="xxxx xxxx xxxx xxxx xxxx">
+        <div class="row gy-3">
+          <div class="col-md-6">
+            <label for="cc-name" class="form-label">Name on card</label>
+            <input type="text" class="form-control" id="cc-name" placeholder="" required>
+            <small class="text-muted">Full name as displayed on card</small>
+            <div class="invalid-feedback">
+              Name on card is required
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="cc-number" class="form-label">Credit card number</label>
+            <input type="text" class="form-control" id="cc-number" placeholder="" required>
+            <div class="invalid-feedback">
+              Credit card number is required
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <label for="cc-expiration" class="form-label">Expiration</label>
+            <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+            <div class="invalid-feedback">
+              Expiration date required
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <label for="cc-cvv" class="form-label">CVV</label>
+            <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+            <div class="invalid-feedback">
+              Security code required
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <hr class="my-3">
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button *ngIf="currentCar" (click)="paying()" type="button" class="btn btn-primary"> Pay </button>
+            </div>
+          </div>
         </div>
+
+        <hr class="my-4">
+
+
+        <h4 class="mb-3">Payment</h4>
+        <div class="my-3">
+          <div class="form-check">
+            <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+            <label class="form-check-label" for="credit">Credit card</label>
+          </div>
+          <div class="form-check">
+            <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
+            <label class="form-check-label" for="debit">Debit card</label>
+          </div>
+          <div class="form-check">
+            <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
+            <label class="form-check-label" for="paypal">PayPal</label>
+          </div>
+        </div>
+
+
       </div>
     </div>
   </body>

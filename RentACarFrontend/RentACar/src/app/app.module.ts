@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
@@ -19,7 +19,12 @@ import { FilterPipeCarPipe } from './pipes/filter-pipe-car.pipe';
 import { FilterPipeColorPipe } from './pipes/filter-pipe-color.pipe';
 import { FilterPipeCarColorPipe } from './pipes/filter-pipe-car-color.pipe';
 
-import {ToastrModule} from "ngx-toastr"
+import {ToastrModule} from "ngx-toastr";
+import { CarAddUpdDelComponent } from './components/car-add-upd-del/car-add-upd-del.component';
+import { BrandAddUpdDelComponent } from './components/brand-add-upd-del/brand-add-upd-del.component';
+import { ColorAddUpdDelComponent } from './components/color-add-upd-del/color-add-upd-del.component';
+import { UpdateCarComponent } from './components/update-car/update-car.component';
+import { DataManagerComponent } from './components/data-manager/data-manager.component'
 
 
 @NgModule({
@@ -35,7 +40,12 @@ import {ToastrModule} from "ngx-toastr"
     FilterPipeBrandPipe,
     FilterPipeCarPipe,
     FilterPipeColorPipe,
-    FilterPipeCarColorPipe
+    FilterPipeCarColorPipe,
+    CarAddUpdDelComponent,
+    BrandAddUpdDelComponent,
+    ColorAddUpdDelComponent,
+    UpdateCarComponent,
+    DataManagerComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +53,7 @@ import {ToastrModule} from "ngx-toastr"
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot({positionClass:"toast-bottom-right"})
   ],
   providers: [],
