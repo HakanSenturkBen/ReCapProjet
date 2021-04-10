@@ -1,143 +1,126 @@
-<h4>For rent a car, please click on car name in car list.</h4>
-
-<div class="row mb-1">
-
-  <div class="mb-1">
-    <!-- <label for="filterText" class="form-label"></label> -->
-    <input type="text " [(ngModel)]="filterText" class="form-control" id="filterText"
-      placeholder="please type name for your seeking car">
-  </div>
-
-  <div class="mb-1" *ngIf="filterText">aranan: {{filterText}}
-  </div>
-  <h6>for filter check here ↓↑</h6>
-
-  <!-- filters of brand and color -->
-  <div class="row mb-2">
-    <div class="col col-4">
-      <select [(ngModel)]="filterText" class="form-select" aria-label="Default select example">
-        <option *ngFor="let brand of brands" [value]="brand.brandName">{{brand.brandName}}</option>
-      </select>
-      <h6>car name filter</h6>
-    </div>
-
-    <div class="col col-4">
-      <select [(ngModel)]="colorFilter" class="form-select" aria-label="Default select example">
-        <option *ngFor="let color of colors" [value]="color.colorName" [selected]="">{{color.colorName}}</option>
-      </select>
-      <h6>color filter</h6>
-    </div>
-
-    <!-- button -->
-    <div class="col col-4">
-
-    </div>
-  </div>
+<div class="container">
 
 
-  <table *ngIf="dataLoaded==true" class="table">
-    <thead>
-      <tr>
-        <th>Brand</th>
-        <th>Color</th>
-        <th>Model Year</th>
-        <th>Daily Price</th>
-        <th>Descriptions</th>
-        <th>Choose</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let car of cars | filterPipeCar:filterText |filterPipeCarColor:colorFilter">
-        <td (click)="setCurrentCar(car)" routerLink="cars/{{car.carID}}">{{car.brandName}}</td>
-        <td>{{car.colorName}}</td>
-        <td>{{car.modelYear}}</td>
-        <td>{{car.dailyPrice | currency : "₺"}}</td>
-        <td>{{car.description}} </td>
-        <td><button (click)="checkCarFreeOrNot(car)" type="button" class="btn btn-success btn-xs">rental</button></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="row mb-1">
 
-  <body *ngIf="currentCar">
-    <div class="row mb-2">
-      <div class="col col-4">
-        <img src={{imagePath}} width="280" height="150" alt="{{carinfo}}">
-        <dl>
-          <dt>{{currentCar.brandName}} "properties"
-          <dd> {{currentCar.brandName}} {{currentCar.colorName}} {{currentCar.modelYear}} {{currentCar.description}}
-            {{currentCar.manifacturer}} product by {{currentCar.production}} assembly: {{currentCar.assembly}}
-            design by {{currentCar.designer}} {{currentCar.class}} {{currentCar.bodyStyle}} engine:
-            {{currentCar.engine}}
-            {{currentCar.powerOut}} transmission: {{currentCar.transmission}}
-        </dl>
-      </div>
-      <div class="col col-8">
+    <body *ngIf="dataLoaded==true">
+      <h3 class="text-center">For rent a car, please click on car image.</h3>
 
-        <hr class="my-4">
+      <hr>
 
-        <div class="row gy-3">
-          <div class="col-md-6">
-            <label for="cc-name" class="form-label">Name on card</label>
-            <input type="text" class="form-control" id="cc-name" placeholder="" required>
-            <small class="text-muted">Full name as displayed on card</small>
-            <div class="invalid-feedback">
-              Name on card is required
+      <!-- filters of brand and color -->
+      <div class="row mb-1">
+
+        <!-- <div class="col col-3">
+          <div class="row mb-4">
+            <div class="row mb-1">
+              
+              <input type="text " [(ngModel)]="filterText" class="form-control" id="filterText"
+                placeholder="please type name of car for your seeking">
+            </div>
+
+            <div class="mb-1" *ngIf="filterText">aranan: {{filterText}}
             </div>
           </div>
-
-          <div class="col-md-6">
-            <label for="cc-number" class="form-label">Credit card number</label>
-            <input type="text" class="form-control" id="cc-number" placeholder="" required>
-            <div class="invalid-feedback">
-              Credit card number is required
-            </div>
+          <div class="row mb-1">
+            <select [(ngModel)]="filterText" class="form-select" aria-label="Default select example">
+              <option *ngFor="let brand of brands" [value]="brand.brandName">{{brand.brandName}}</option>
+            </select>
+            <h6>car name filter</h6>
           </div>
 
-          <div class="col-md-3">
-            <label for="cc-expiration" class="form-label">Expiration</label>
-            <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-            <div class="invalid-feedback">
-              Expiration date required
-            </div>
-          </div>
-
-          <div class="col-md-3">
-            <label for="cc-cvv" class="form-label">CVV</label>
-            <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-            <div class="invalid-feedback">
-              Security code required
-            </div>
-          </div>
-
-          <div class="col-md-3">
-            <hr class="my-3">
-            <div class="btn-group" role="group" aria-label="Basic example">
-              <button *ngIf="currentCar" (click)="paying()" type="button" class="btn btn-primary"> Pay </button>
-            </div>
+          <div class="row mb-1">
+            <select [(ngModel)]="colorFilter" class="form-select" aria-label="Default select example">
+              <option *ngFor="let color of colors" [value]="color.colorName" [selected]="">{{color.colorName}}</option>
+            </select>
+            <h6>color filter</h6>
           </div>
         </div>
+ -->
 
-        <hr class="my-4">
 
+        <div class="col col-12">
+          <table class="table">
+            <tbody>
+              <div class="row ">
+                <div class="col-md-7 col-lg-12">
+                  <form class="needs-validation" novalidate>
+                    <div class="row g-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+                      </svg>
+                      
+                      <div class="card text-white bg-secondary mb-3" style="width: 25rem;"
+                        *ngFor="let car of cars | filterPipeCar:filterText |filterPipeCarColor:colorFilter">
+                        <div class="py-2 text-center">
 
-        <h4 class="mb-3">Payment</h4>
-        <div class="my-3">
-          <div class="form-check">
-            <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
-            <label class="form-check-label" for="credit">Credit card</label>
-          </div>
-          <div class="form-check">
-            <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
-            <label class="form-check-label" for="debit">Debit card</label>
-          </div>
-          <div class="form-check">
-            <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
-            <label class="form-check-label" for="paypal">PayPal</label>
-          </div>
+                          <div class="hover-overlay-container">
+
+                            <img class="overlay-image" src="{{car.carImage}}">
+                            <div class="overlay-btn-container">
+                              <button (click)="checkCarFreeOrNot(car)"
+                                class="w-100 btn btn-primary btn-lg">Rent</button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          <h5 class="card-title">{{car.brandName}}</h5>
+                          <ul lass="list group">
+                          <p class="card-text">{{car.carName}}</p>
+                          <p class="card-text">{{car.colorName}}</p>
+                          <p class="card-text">{{car.modelYear}}</p>
+                          <p class="card-text">{{car.dailyPrice | currency : "₺"}}</p>
+                          <p class="card-text">{{car.description}}</p>
+                          <p class="card-text">{{car.modelYear}}</p>
+                        </ul>
+                        </div>
+                        <a (click)="checkCarFreeOrNot(car)" class="btn btn-primary">Rental</a>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </tbody>
+          </table>
         </div>
-
-
       </div>
-    </div>
-  </body>
+    </body>
+    <hr class="my-5">
+
+
+    <body *ngIf="currentCar">
+      <div class="row mb-2">
+        <div class="col col-4">
+          <img src={{imagePath}} width="280" height="150" alt="{{carinfo}}">
+          <dl>
+            <dt>{{currentCar.brandName}} "properties"
+            <dd> {{currentCar.brandName}} {{currentCar.colorName}} {{currentCar.modelYear}} {{currentCar.description}}
+              {{currentCar.manifacturer}} product by {{currentCar.production}} assembly: {{currentCar.assembly}}
+              design by {{currentCar.designer}} {{currentCar.class}} {{currentCar.bodyStyle}} engine:
+              {{currentCar.engine}}
+              {{currentCar.powerOut}} transmission: {{currentCar.transmission}}
+          </dl>
+        </div>
+        <div class="col col-8">
+
+          <div class="row mb-1">
+            <div class="col col-8"></div>
+            <div class="col col-2"></div>
+            <div class="col col-2">
+              <a (click)="reFresh()" class="navbar-brand">Return car list</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+            </div>
+          </div>
+
+          <app-member-ship></app-member-ship>
+          <app-car-rental></app-car-rental>
+        </div>
+      </div>
+    </body>
+  </div>
+</div>

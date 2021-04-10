@@ -1,5 +1,7 @@
 ﻿using Businness.Abstract;
 using Businness.Constant;
+using Businness.ValidationRules.FluentValidation;
+using Core.Aspect.Autofac.Validation;
 using Core.Utilities.Result;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -18,7 +20,7 @@ namespace Businness.Concrete
         {
             _rentalsDal = rentalsDal;
         }
-
+        [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rentals rent)
         {
             if (rent.ReturnDate==null)
@@ -42,10 +44,11 @@ namespace Businness.Concrete
             return new SuccessDataResult<List<Rentals>>(_rentalsDal.GetAll(), Messages.Listed);
         }
 
-        public IDataResult<Rentals> GetById(int rentalID)
+        public IDataResult<List<Rentals>> GetById(int carID)
         {
-            return new SuccessDataResult<Rentals>(_rentalsDal.Get(x => x.RentID == rentalID));
+            return new SuccessDataResult<List<Rentals>>(_rentalsDal.GetAll(x => x.CarId == carID));
         }
+
 
         public IDataResult<List<RentalDetailDto>> GetRentalDetails()
         {
@@ -62,5 +65,7 @@ namespace Businness.Concrete
             _rentalsDal.Update(rent);
             return new SuccessResult(Messages.Updated);
         }
+
+      
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Businness.Abstract;
-using DataAccess.Abstract;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,11 +11,11 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BankPaymentController : Controller
+    public class PaymentsController : ControllerBase
     {
         IBankPaymentService _bankPaymentDal;
 
-        public BankPaymentController(IBankPaymentService bankPaymentDal)
+        public PaymentsController(IBankPaymentService bankPaymentDal)
         {
             _bankPaymentDal = bankPaymentDal;
         }
@@ -74,6 +74,5 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-
     }
 }

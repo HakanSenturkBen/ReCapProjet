@@ -13,9 +13,6 @@ namespace Entities.Concrete
         public string AccountName { get; set; }
         public string AccountNumber { get; set; }
         public string CreditCardNumber { get; set; }
-        public string DebitCardNumber { get; set; }
         public int TransactionAmount { get; set; }
-
-        
     }
 }

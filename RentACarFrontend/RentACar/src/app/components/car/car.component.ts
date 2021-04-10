@@ -12,8 +12,7 @@ import { ColorService } from 'src/app/services/color.service';
 import { ToastrService } from 'ngx-toastr';
 import { RentalService } from 'src/app/services/rental.service';
 import { Rental } from 'src/app/models/rental';
-import { CompileShallowModuleMetadata } from '@angular/compiler';
-import { EMPTY } from 'rxjs';
+
 
 @Component({
   selector: 'app-car',
@@ -137,6 +136,10 @@ export class CarComponent implements OnInit {
 
   paying (){
     this.toastrService.success("araç kiralama başarılı")
+  }
+
+  reFresh(){
+    location.reload()
   }
 
   

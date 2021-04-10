@@ -14,12 +14,12 @@ namespace DataAccess.Concrete.EntityFrameWork
             using (RentaCarContext context = new RentaCarContext())
             {
                 var result = from x in context.Customers
-                             join y in context.Users on x.userID equals y.UserID
+                             join y in context.Users on x.Id equals y.UserID
                              select new CustomerDetailDto
                              {
-                                 id = x.userID,
+                                 id = x.Id,
                                  name = y.FirstName + " " + y.LastName,
-                                 company = x.CompanyName
+                                 company = x.FirstName + " "+x.LastName
                              };
                 return result.ToList();
             }

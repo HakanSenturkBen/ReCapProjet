@@ -20,7 +20,7 @@ namespace DataAccess.Concrete.EntityFrameWork
                              join u in context.Users on r.CustomerId equals u.UserID
                              join b in context.Brands on c.BrandID equals b.BrandID
                              join color in context.Colors on c.ColorID equals color.ColorId
-                             join cos in context.Customers on u.UserID equals cos.userID
+                             join cos in context.Customers on u.UserID equals cos.Id
 
                              select new RentalDetailDto
                              {
@@ -28,7 +28,6 @@ namespace DataAccess.Concrete.EntityFrameWork
                                  CustomerName = u.FirstName + u.LastName,
                                  CarBrand = b.BrandName,
                                  CarName = c.CarName,
-                                 CompanyName = cos.CompanyName,
                                  CarColor = color.ColorName,
                                  ModelYear = c.ModelYear,
                                  DailyPrice = c.DailyPrice,
@@ -51,7 +50,7 @@ namespace DataAccess.Concrete.EntityFrameWork
                              join u in context.Users on r.CustomerId equals u.UserID
                              join b in context.Brands on c.BrandID equals b.BrandID
                              join color in context.Colors on c.ColorID equals color.ColorId
-                             join cos in context.Customers on u.UserID equals cos.userID
+                             join cos in context.Customers on u.UserID equals cos.Id
 
                              where c.CarID==CarID
                              select new RentalDetailDto
@@ -60,7 +59,6 @@ namespace DataAccess.Concrete.EntityFrameWork
                                  CustomerName = u.FirstName + u.LastName,
                                  CarBrand = b.BrandName,
                                  CarName = c.CarName,
-                                 CompanyName = cos.CompanyName,
                                  CarColor = color.ColorName,
                                  ModelYear = c.ModelYear,
                                  DailyPrice = c.DailyPrice,

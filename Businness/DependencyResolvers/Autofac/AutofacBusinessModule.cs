@@ -42,8 +42,17 @@ namespace Businness.DependencyResolvers.Autofac
             builder.RegisterType<UserManager>().As<IUserService>();
             builder.RegisterType<EfUserDal>().As<IUserDal>();
 
+            builder.RegisterType<CarInfoDetailManager>().As<ICarInfoDetailService>();
+            builder.RegisterType<EfCarInfoDetail>().As<ICarInfoDetailDal>();
+
             builder.RegisterType<AuthManager>().As<IAuthService>();
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();
+
+            builder.RegisterType<CustomerManager>().As<ICustomerService>();
+            builder.RegisterType<EfCustomerDal>().As<ICustomerDal>();
+
+            builder.RegisterType<BankPaymetManager>().As<IBankPaymentService>();
+            builder.RegisterType<EfBankPaymentDal>().As<IBankPaymentDal>();
 
             builder.RegisterType<HttpContextAccessor>().As<IHttpContextAccessor>();
 

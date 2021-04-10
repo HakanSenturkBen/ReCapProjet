@@ -78,6 +78,7 @@ namespace DataAccess.Concrete.InMemory
             throw new NotImplementedException();
         }
 
+        
         public void Update(Car car)
         {
             Car carToUpdate = _carDal.SingleOrDefault(c => c.CarID == car.CarID);

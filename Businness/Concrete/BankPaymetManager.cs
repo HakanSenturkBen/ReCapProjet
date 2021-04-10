@@ -1,4 +1,9 @@
 ﻿using Businness.Abstract;
+using Businness.Constant;
+using Businness.ValidationRules.FluentValidation;
+using Core.Aspect.Autofac.Validation;
+using Core.Utilities;
+using Core.Utilities.Business;
 using Core.Utilities.Result;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -16,11 +21,27 @@ namespace Businness.Concrete
         {
             _bankPaymentDal = bankPaymentDal;
         }
-
+        [ValidationAspect(typeof(PaymentValidator))]
         public IResult Add(BankPaymentService bankPayment)
         {
+            //IResult result = BusinessRules.Run(ValidCard(bankPayment));
+            //if (result != null)
+            //{
+            //    return result;
+            //}
             _bankPaymentDal.Add(bankPayment);
+            return new SuccessResult(Messages.PaymentComplete);
+        }
+
+        private IResult ValidCard(BankPaymentService bankPayment)
+        {
+            var result = Utilities.ValidCard(bankPayment.CreditCardNumber);
+            if (!result)
+            {
+                return new ErrorResult(Messages.invalidCard);
+            }
             return new SuccessResult();
+            
         }
 
         public IResult Delete(BankPaymentService bankPayment)
@@ -39,6 +60,7 @@ namespace Businness.Concrete
             return new SuccessDataResult<BankPaymentService>(_bankPaymentDal.Get(x => x.BankId == BankID));
         }
 
+        
         public IResult Update(BankPaymentService bankPayment)
         {
             _bankPaymentDal.Update(bankPayment);

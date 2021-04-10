@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRouteSnapshot, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Rental } from 'src/app/models/rental';
 import { RentalService } from 'src/app/services/rental.service';
@@ -15,10 +16,19 @@ export class CarRentalComponent implements OnInit {
 
   dataLoaded=false;
 
-  constructor(private rentalService:RentalService, private toastrService:ToastrService) { }
+  constructor(private rentalService:RentalService,
+     private toastrService:ToastrService,
+     private router:Router) { }
 
   ngOnInit(): void {
     this.getRentals();
+    this.checkMembership()
+  }
+
+  reDirection(where:string){
+    this.toastrService.info("redirection to "+where+" service")
+    route: ActivatedRouteSnapshot
+    this.router.navigate([where])
   }
 
   getRentals(){
@@ -27,8 +37,19 @@ export class CarRentalComponent implements OnInit {
       console.log(this.rentals)
       this.dataLoaded=true});
       
+  }
 
+  getMemberInfo(){
 
+  }
+
+  checkMembership(){
+    if(localStorage.getItem("username")===null){
+      this.reDirection("/memberShip")
+    }else{
+      this.getMemberInfo()
+    }
+    
   }
 
 }

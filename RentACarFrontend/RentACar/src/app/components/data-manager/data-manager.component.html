@@ -25,43 +25,41 @@
                     <td>{{car.dailyPrice | currency : "₺"}}</td>
                     <td>{{car.description}} </td>
                     <td>{{car.manifacturer}}</td>
-                    <td><button (click)="setCurrentCar(car)" type="button"
-                            class="btn btn-success btn-xs">update / delete</button></td>
-                    
+                    <td><button (click)="setCurrentCar(car)" type="button" class="btn btn-success btn-xs">upd/del</button></td>
+
                 </tr>
             </tbody>
         </table>
     </body>
 
     <body *ngIf="currentCar">
-
-        <h5> </h5>
-
         <body class="bg-light">
             <div class="container">
                 <main>
                     <div class="row">
                         <div class="col-lg-5">
                             <div class="py-5 text-center">
-                                <img class="d-block mx-auto mb-4" src="{{imagePath}}" alt="" width="252" height="117">
-                                <dl>
-                                    <dt>{{currentCar.brandName}} "properties"
-                                    <dd> {{currentCar.brandName}} {{currentCar.colorName}} {{currentCar.modelYear}}
-                                        {{currentCar.description}}{{currentCar.manifacturer}} product by {{currentCar.production}}
-                                        assembly:{{currentCar.assembly}} design by {{currentCar.designer}} {{currentCar.class}}
-                                        {{currentCar.bodyStyle}} engine: {{currentCar.engine}} {{currentCar.powerOut}}
-                                        transmission: {{currentCar.transmission}}
-                                </dl>
+                                
+                                <div class="hover-overlay-container">
+                                    <ul class="list-group mb-3">
+                                        
+                                        <img class="overlay-image" src="{{imagePath}}">
+                                    <small class="text-muted">Full name as displayed on card</small>
+                                    
+                                    <div class="overlay-btn-container">
+                                        <button href="#" class="w-100 btn btn-primary btn-lg">Change picture</button>
+                                       
+                                    </div>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-5 col-lg-6 order-md-last">
-                            <h4 class="d-flex justify-content-between align-items-center mb-3">
-                                
-                            </h4>
-                            <ul class="list-group mb-3">
+                           
+                            <ul class="list-group mb-2" >
                                 <li class="list-group-item d-flex justify-content-between lh-sm">
                                     <div>
-                                        <h6 class="my-2">{{currentCar.brandName}} {{currentCar.colorName    }}</h6>
+                                        <h6 class="my-2">{{currentCar.brandName}} {{currentCar.carName }}</h6>
                                         <small class="text-muted">brand color and model year</small>
                                     </div>
                                     <span class="text-muted">{{currentCar.modelYear}}</span>
@@ -96,104 +94,137 @@
                                     <span class="text-muted">{{currentCar.transmission}}</span>
                                 </li>
                             </ul>
-
                         </div>
-                        
                     </div>
                     <hr class="my-4">
                     <div class="row ">
                         <div class="col-md-7 col-lg-12">
-                            <div class="py-5 text-center"><h4 class="mb-3">car data recording</h4></div>
-                            <form class="needs-validation" novalidate>
+                            <div class="py-5 text-center">
+                                <h4 class="mb-3">car data recording</h4>
+                            </div>
+                            <form [formGroup]="carUpdate" class="needs-validation" novalidate>
                                 <div class="row g-2">
+
                                     <div class="col-sm-3">
-                                        <label for="brandName" class="form-label">Brand name</label>
-                                        <input type="text" class="form-control" id="brandName" placeholder="{{currentCar.brandName}}" value=""
-                                            required>
+                                        <label for="brands" class="form-label">brands:{{currentCar.brandName}}</label>
+                                        <select formControlName="brandName" class="form-select" id="brands" required
+                                            data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="seçim yapmazsan küserim">
+                                            <option selected>{{currentCar.brandName}}</option>
+                                            <option *ngFor="let brand of brands">{{brand.brandID}}-{{brand.brandName}}
+                                            </option>
+
+                                        </select>
+
+
                                     </div>
 
                                     <div class="col-sm-3">
-                                        <label for="colorName" class="form-label">Color name</label>
-                                        <input type="text" class="form-control" id="colorName" placeholder="{{currentCar.colorName}}" value=""
-                                            required>
+                                        <label for="colors" class="form-label">Colors:{{currentCar.colorName}}</label>
+                                        <select formControlName="colorName" class="form-select" id="color" required>
+                                            <option selected>{{currentCar.colorName}}</option>
+                                            <option *ngFor="let color of colors">{{color.colorId}}-{{color.colorName}}
+                                            </option>
+
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <label for="carName" class="form-label">Model name</label>
+                                        <input type="text" [(ngModel)]="currentCar.carName" class="form-control"
+                                            id="modelYear" formControlName="carName" required>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <label for="modelYear" class="form-label">Model year</label>
+                                        <input type="text" [(ngModel)]="currentCar.modelYear" class="form-control"
+                                            id="modelYear" placeholder="{{currentCar.modelYear}}"
+                                            formControlName="modelYear" required>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <label for="dailyPrice" class="form-label">daily price</label>
+                                        <input type="number" class="form-control" id="dailyPrice"
+                                            [(ngModel)]="currentCar.dailyPrice" formControlName="dailyPrice"
+                                            value="1500" min=1500 max=2350 required>
+                                        <span *ngFor="let mistake of mistakes"> {{mistake}}</span>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <label for="description" class="form-label">description</label>
+                                        <input type="text" class="form-control" id="description"
+                                            [(ngModel)]="currentCar.description" formControlName="description" required>
                                     </div>
 
                                     <div class="col-sm-3">
                                         <label for="manifacturer" class="form-label">manifacturer</label>
-                                        <input type="text" class="form-control" id="manifacturer" placeholder="{{currentCar.manifacturer}}" value=""
+                                        <input type="text" class="form-control" id="manifacturer"
+                                            [(ngModel)]="currentCar.manifacturer" formControlName="manifacturer"
                                             required>
                                     </div>
 
                                     <div class="col-sm-3">
                                         <label for="production" class="form-label">production</label>
-                                        <input type="text" class="form-control" id="production" placeholder="{{currentCar.production}}" value=""
-                                            required>
+                                        <input type="text" class="form-control" id="production"
+                                            [(ngModel)]="currentCar.production" formControlName="production" required>
                                     </div>
 
                                     <div class="col-sm-3">
                                         <label for="assembly" class="form-label">assembly</label>
-                                        <input type="text" class="form-control" id="assembly" placeholder="{{currentCar.assembly}}" value=""
-                                            required>
+                                        <input type="text" class="form-control" id="assembly"
+                                            [(ngModel)]="currentCar.assembly" formControlName="assembly" required>
                                     </div>
 
                                     <div class="col-sm-3">
-                                        <label for="designer" class="form-label">assembly</label>
-                                        <input type="text" class="form-control" id="designer" placeholder="{{currentCar.designer}}" value=""
-                                            required>
+                                        <label for="designer" class="form-label">designer</label>
+                                        <input type="text" class="form-control" id="designer"
+                                            [(ngModel)]="currentCar.designer" formControlName="designer" required>
                                     </div>
 
                                     <div class="col-sm-3">
-                                        <label for="class" class="form-label">assembly</label>
-                                        <input type="text" class="form-control" id="class" placeholder="{{currentCar.class}}" value=""
-                                            required>
+                                        <label for="class" class="form-label">class</label>
+                                        <input type="text" class="form-control" id="class"
+                                            [(ngModel)]="currentCar.class" formControlName="class" required>
                                     </div>
 
                                     <div class="col-sm-3">
-                                        <label for="bodystyle" class="form-label">assembly</label>
-                                        <input type="text" class="form-control" id="bodystyle" placeholder="{{currentCar.bodyStyle}}" value=""
-                                            required>
+                                        <label for="bodystyle" class="form-label">bodystyle</label>
+                                        <input type="text" class="form-control" id="bodystyle"
+                                            [(ngModel)]="currentCar.bodyStyle" formControlName="bodyStyle" required>
                                     </div>
 
                                     <div class="col-sm-3">
-                                        <label for="engine" class="form-label">assembly</label>
-                                        <input type="text" class="form-control" id="engine" placeholder="{{currentCar.engine}}" value=""
-                                            required>
-                                    </div>
-                                    
-                                    <div class="col-sm-3">
-                                        <label for="powerOut" class="form-label">assembly</label>
-                                        <input type="text" class="form-control" id="powerOut" placeholder="{{currentCar.powerOut}}" value=""
-                                            required>
+                                        <label for="engine" class="form-label">engine</label>
+                                        <input type="text" class="form-control" id="engine"
+                                            [(ngModel)]="currentCar.engine" formControlName="engine" required>
                                     </div>
 
                                     <div class="col-sm-3">
-                                        <label for="transmission" class="form-label">assembly</label>
-                                        <input type="text" class="form-control" id="transmission" placeholder="{{currentCar.transmission}}" value=""
+                                        <label for="powerOut" class="form-label">powerOut</label>
+                                        <input type="text" class="form-control" id="powerOut"
+                                            [(ngModel)]="currentCar.powerOut" formControlName="powerOut" required>
+
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <label for="transmission" class="form-label">transmission</label>
+                                        <input type="phone" class="form-control" id="transmission"
+                                            [(ngModel)]="currentCar.transmission" formControlName="transmission"
                                             required>
                                     </div>
 
-                                    <div class="col-md-5">
-                                        <label for="brands" class="form-label">brands</label>
-                                        <select class="form-select" id="brands" required>
-                                            <option value="">Choose...</option>
-                                            <option *ngFor="let brand of brands">{{brand.brandName}}</option>
-                                        </select>
-                                        
-                                    </div>
 
-                                    <div class="col-md-4">
-                                        <label for="colors" class="form-label">Colors</label>
-                                        <select class="form-select" id="colors" required>
-                                            <option value="">Choose...</option>
-                                            <option *ngFor="let color of colors">{{color.colorName}}</option>
-                                        </select>
-                                    </div>
                                 </div>
-                                <button class="w-100 btn btn-primary btn-lg" type="submit">DATA UPDATE</button>
+                                <h6></h6>
+                                <button routerLink="datamanager" (click)="update()" class="w-100 btn btn-primary btn-lg"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="kayıt tuşu"
+                                    type="submit">DATA UPDATE</button>
                             </form>
                         </div>
                     </div>
                 </main>
+
+               
                 <footer class="my-5 pt-5 text-muted text-center text-small">
                     <p class="mb-1">&copy; 2017–2021 Company Name</p>
                     <ul class="list-inline">
@@ -203,3 +234,4 @@
                     </ul>
                 </footer>
             </div>
+            

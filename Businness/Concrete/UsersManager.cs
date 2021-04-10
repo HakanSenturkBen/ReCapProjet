@@ -45,6 +45,12 @@ namespace Businness.Concrete
             return new SuccessDataResult<Users>(_usersDal.Get(x => x.UserID == userID));
         }
 
+        public IDataResult<Users> GetByEmail(string email)
+        {
+            return new SuccessDataResult<Users>(_usersDal.Get(x => x.Email == email),Messages.SuccessfulLogin); ;
+            
+        }
+
         public IDataResult<List<CustomerDetailDto>> GetCustomerDetails()
         {
             return new SuccessDataResult<List<CustomerDetailDto>>(_usersDal.GetCustomerDetails());

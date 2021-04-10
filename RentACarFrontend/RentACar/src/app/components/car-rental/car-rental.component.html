@@ -1,28 +1,68 @@
-<!-- <div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div> -->
-<table class="table">
-  <thead>
-    <tr>
-      <th>Ad-Soyad</th>
-      <th>Şirket Adı</th>
-      <th>Araç Marka</th>
-      <th>Renk</th>
-      <th>Model</th>
-      <th>Günlük Kira</th>
-      <th>Kiralama Tarihi</th>
-      <th>Teslim Tarihi</th>
 
-    </tr>
-  </thead>
-  <tr *ngFor="let rental of rentals">
-      <td>{{rental.customerName}}</td>
-      <td>{{rental.companyName}}</td>
-      <td>{{rental.carBrand}} {{rental.carName}}</td>
-      <td>{{rental.carColor}}</td>
-      <td>{{rental.modelYear}}</td>
-      <td>{{rental.dailyPrice}}</td>
-      <td>{{rental.rentDate}}</td>
-      <td>{{rental.returnDate}}</td>
-  </tr>
-</table>
+<div class="row gy-3">
+
+  <body>
+
+  </body>
+  <div class="col-md-6">
+    <label for="cc-name" class="form-label">Name on card</label>
+    <input type="text" class="form-control" id="cc-name" placeholder="" required>
+    <small class="text-muted">Full name as displayed on card</small>
+    <div class="invalid-feedback">
+      Name on card is required
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <label for="cc-number" class="form-label">Credit card number</label>
+    <input type="text" class="form-control" id="cc-number" placeholder="" required>
+    <div class="invalid-feedback">
+      Credit card number is required
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <label for="cc-expiration" class="form-label">Expiration</label>
+    <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+    <div class="invalid-feedback">
+      Expiration date required
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <label for="cc-cvv" class="form-label">CVV</label>
+    <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+    <div class="invalid-feedback">
+      Security code required
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <hr class="my-3">
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button  type="button" class="btn btn-primary"> Pay </button>
+      <!-- <button (click)="paying()" type="button" class="btn btn-primary"> Pay </button> -->
+    </div>
+  </div>
+</div>
+
+<hr class="my-4">
+
+
+<h4 class="mb-3">Payment</h4>
+<div class="my-3">
+  <div class="form-check">
+    <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+    <label class="form-check-label" for="credit">Credit card</label>
+  </div>
+  <div class="form-check">
+    <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
+    <label class="form-check-label" for="debit">Debit card</label>
+  </div>
+  <div class="form-check">
+    <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
+    <label class="form-check-label" for="paypal">PayPal</label>
+  </div>
+</div>
+
+

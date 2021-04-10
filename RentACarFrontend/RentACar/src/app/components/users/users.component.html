@@ -1,0 +1,52 @@
+<div *ngIf="!login">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <form [formGroup]="userModel" class="d-flex">
+
+            <div class="input-group mb-1">
+                <input type="email" class="form-control" placeholder="Recipient's username"
+                    aria-label="Recipient's e-mail" formControlName="email">
+
+                <input type="password" class="form-control" placeholder="Recipient's username"
+                    aria-label="Recipient's password" aria-describedby="button-addon2" formControlName="password">
+                <button (click)="getUser()" class="btn btn-outline-secondary" type="button"
+                    id="button-addon2">enter</button>
+            </div>
+
+
+        </form>
+    </div>
+
+</div>
+
+<form *ngIf="login" class="d-flex">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" >{{username}}</a></li>
+          <li class="nav-item dropdown">
+            <a class="page-link" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+                  </svg>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Membership</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a (click)="logOut()" class="dropdown-item" >Exit</a></li>
+            </ul>
+          </li>
+          <li class="page-item">
+              <a (click)="logOut()" class="page-link"  aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+              </a>
+          </li>
+        </ul>
+      </nav>
+</form>

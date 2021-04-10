@@ -1,0 +1,32 @@
+<h6></h6>
+
+<body class="text-center">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-6">
+        <img class="mb-4" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/lotus-evija-101-1563220910.jpg?crop=1.00xw:0.759xh;0,0.175xh&resize=1200:*" alt="" width="102" height="57">
+        <main class="form-signin">
+            <form [formGroup]="loginForm">
+                <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+                <div class="form-floating">
+                    <input  formControlName="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <label for="floatingInput">Email address</label>
+                </div>
+                <div class="form-floating">
+                    <input formControlName="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me {{say}}.try to sing in
+                    </label>
+                </div>
+                <button *ngIf="setLogin()<3" (click)="login()"class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+                <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+            </form>
+        </main>
+    </div>
+</body>
+

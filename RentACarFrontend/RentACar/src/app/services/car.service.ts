@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { ListResponseModel } from '../models/listResponseModel';
 import { Car } from '../models/car';
 import { CarAdd } from '../models/carAdd';
+import { CarInfoDetail } from '../models/carInfoDetail';
 
 
 @Injectable({
@@ -37,4 +38,17 @@ export class CarService {
 
     return this.httpClient.post<ListResponseModel<CarAdd>>(this.apiUrl+"Cars/add",params, {headers:headers});
   }
+
+  updateCar(carUpdate:CarAdd):Observable<ListResponseModel<CarAdd>>{
+    let params=JSON.stringify(carUpdate);
+    let headers= new HttpHeaders().set('Content-Type','application/json');
+    return this.httpClient.post<ListResponseModel<CarAdd>>(this.apiUrl+"Cars/Update",params, {headers:headers});
+  }
+
+  updateInfoCar(car:CarInfoDetail):Observable<ListResponseModel<CarInfoDetail>>{
+    let params=JSON.stringify(car);
+    let headers= new HttpHeaders().set('Content-Type','application/json');
+    return this.httpClient.post<ListResponseModel<CarInfoDetail>>(this.apiUrl+"CarInfos/Update",params, {headers:headers});
+  }
+
 }

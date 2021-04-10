@@ -21,7 +21,7 @@ export class RentalService {
   
   getRentals():Observable<RentalResponseModel>{
     let newPath=this.apiUrl+"Rentals/GetDetail"
-      return this.httpClient.get<RentalResponseModel>(this.apiUrl);
+      return this.httpClient.get<RentalResponseModel>(newPath);
     }
 
   

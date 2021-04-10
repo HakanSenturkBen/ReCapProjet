@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,7 +25,16 @@ import { CarAddUpdDelComponent } from './components/car-add-upd-del/car-add-upd-
 import { BrandAddUpdDelComponent } from './components/brand-add-upd-del/brand-add-upd-del.component';
 import { ColorAddUpdDelComponent } from './components/color-add-upd-del/color-add-upd-del.component';
 import { UpdateCarComponent } from './components/update-car/update-car.component';
-import { DataManagerComponent } from './components/data-manager/data-manager.component'
+import { DataManagerComponent } from './components/data-manager/data-manager.component';
+import { AddUserComponent } from './components/add-user/add-user.component';
+import { LoginComponent } from './components/login/login.component';
+import { UsersComponent } from './components/users/users.component';
+import { ValidformComponent } from './components/validform/validform.component'
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import {LocalStorageModule} from 'angular-2-local-storage';
+import { MemberShipComponent } from './components/member-ship/member-ship.component'
+import { ɵEmptyOutletComponent } from '@angular/router';
+
 
 
 @NgModule({
@@ -45,7 +55,12 @@ import { DataManagerComponent } from './components/data-manager/data-manager.com
     BrandAddUpdDelComponent,
     ColorAddUpdDelComponent,
     UpdateCarComponent,
-    DataManagerComponent
+    DataManagerComponent,
+    AddUserComponent,
+    LoginComponent,
+    UsersComponent,
+    ValidformComponent,
+    MemberShipComponent
   ],
   imports: [
     BrowserModule,
@@ -54,9 +69,15 @@ import { DataManagerComponent } from './components/data-manager/data-manager.com
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot({positionClass:"toast-bottom-right"})
+    ToastrModule.forRoot({positionClass:"toast-bottom-right"}),
+    LocalStorageModule,
+    MatDialogModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true},
+    {provide:"User",useValue:""},
+  ],
+  bootstrap: [AppComponent],
+  entryComponents:[ɵEmptyOutletComponent]
 })
 export class AppModule { }

@@ -52,13 +52,13 @@ export class UpdateCarComponent implements OnInit {
       let carModel = Object.assign({}, this.carAddForm.value)
       let br:number=parseInt(carModel.brandName.substr(0, 1))
       let cr:number=parseInt(carModel.colorName.substr(0, 1))
-      this.carAdd={brandID:br,
-                    colorID:cr,
-                    carName:carModel.carName,
-                    modelYear:carModel.modelYear,
-                    dailyPrice:carModel.dailyPrice,
-                    description:carModel.description
-      }
+      this.carAdd.brandID=br,
+      this.carAdd.colorID=cr,
+      this.carAdd.carName=carModel.carName,
+      this.carAdd.modelYear=carModel.modelYear,
+      this.carAdd.dailyPrice=carModel.dailyPrice,
+      this.carAdd.description=carModel.description
+      
        
       this.carService.add(this.carAdd).subscribe(response=>{
         console.log(response)  
@@ -74,6 +74,7 @@ export class UpdateCarComponent implements OnInit {
 
 
   }
+
 
   update() {
 

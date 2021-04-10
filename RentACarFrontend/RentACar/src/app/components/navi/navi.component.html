@@ -1,48 +1,42 @@
+<body class="bg-success">
+  
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a  routerLink="datamanager" class="navbar-brand" href="#">DataManager</a>
-      <button  class="navbar-toggler" type="button" data-bs-toggle="collapse" 
-              data-bs-target="#navbarSupportedContent" 
-              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li>
-          <input class="form-control me-2" type="search" placeholder="" aria-label="Search">
-        </ul>
-        <form class="d-flex">
-          
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <input class="form-control me-2" type="search" placeholder={{tespit}} aria-label="Search">
-          </ul>
-        <body>
-          <button (click)="refresh()" class="btn btn-outline-success" type="mat-raised-button">Refresh page</button>
-          <button routerLink="cars/add"  class="btn btn-outline-success" type="submit">Add new car</button>
-          <button routerLink="datamanager"  class="btn btn-outline-success" type="submit">Data manager</button>
-          
-        </body>  
-          
-        </form>
-      </div>
+
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        
+        <li class="nav-item">
+          <a routerLink="" class="nav-link" >Home</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="datamanager" class="nav-link active" aria-current="page">DataManager</a>
+        </li>
+        <li class="nav-item">
+          <a href="cars/add" class="nav-link" >car add</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="login" class="nav-link" >Login</a>
+        </li>
+        <li class="nav-item">
+          <div class="hover-overlay-container">
+
+            <img class="overlay-image" width="100" src="https://www.motortrend.com/uploads/sites/5/2020/01/Lamborghini-Huracan-Evo-RWD-front-three-quarters.jpg">
+            <div class="overlay-btn-container">
+              <button routerLink="cars"
+                class="btn btn-outline-secondary">Rent</button>
+            </div>
+          </div>
+        </li>
+        
+        <li class="nav-item">
+          <img src="https://scontent.fesb3-2.fna.fbcdn.net/v/t1.6435-9/168851874_4585041024856286_5945590569367529056_n.jpg?_nc_cat=106&ccb=1-3&_nc_sid=730e14&_nc_ohc=LNiPTiSIxIMAX_mpi1Z&_nc_ht=scontent.fesb3-2.fna&oh=8eefed477b89abb55ec4f29bdea32574&oe=608E3C9C" 
+          width="700" height="40"  alt="">
+        </li>
+      </ul>
+      <app-users></app-users>
     </div>
-  </nav>
+
+  </div>
+</nav>

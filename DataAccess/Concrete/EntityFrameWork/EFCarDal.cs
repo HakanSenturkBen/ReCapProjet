@@ -17,7 +17,9 @@ namespace DataAccess.Concrete.EntityFrameWork
         {
             using (RentaCarContext context = new RentaCarContext())
             {
-                var result = from car in context.Car
+                List<CarDetailDto> liste = new List<CarDetailDto>();
+                CarDetailDto sonuc = new CarDetailDto();
+                var result= from car in context.Car
                              join brand in context.Brands on car.BrandID equals brand.BrandID
                              join color in context.Colors on car.ColorID equals color.ColorId
                              join image in context.CarImage on car.CarID equals image.CarID
@@ -26,8 +28,9 @@ namespace DataAccess.Concrete.EntityFrameWork
                              select new CarDetailDto
                              {
                                  CarID = car.CarID,
-                                 BrandName = brand.BrandName + " " + car.CarName,
+                                 BrandName = brand.BrandName ,
                                  ColorName = color.ColorName,
+                                 CarName =car.CarName,
                                  ModelYear = car.ModelYear,
                                  DailyPrice = car.DailyPrice,
                                  Description = car.Description,
@@ -42,8 +45,11 @@ namespace DataAccess.Concrete.EntityFrameWork
                                  PowerOut = carInfo.PowerOut,
                                  Transmission = carInfo.Transmission
                              };
-
-                return result.ToList();
+                foreach (var item in result)
+                {
+                    liste.Add(item);
+                }
+                return liste;
             }
         }
 
@@ -115,5 +121,7 @@ namespace DataAccess.Concrete.EntityFrameWork
             }
         }
 
+     
+        }
     }
-}
+

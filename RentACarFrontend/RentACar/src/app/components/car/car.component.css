@@ -1,0 +1,83 @@
+.container {
+    max-width: 1290px;
+   
+  }
+
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  @media (min-width: 370px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+  
+  td{
+    background-color: rgb(250, 250, 250);
+  }
+
+  
+  .hover-overlay-container {
+  position: relative;
+  width: 390px;
+  height: 240px;
+  }
+  .hover-overlay-container:hover .overlay-image {
+  opacity: 0.6;
+  }
+  .hover-overlay-container:hover .overlay-btn-container {
+  opacity: 1;
+  }
+  .hover-overlay-container .overlay-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 1;
+  transition: .5s ease;
+  backface-visibility: hidden;
+  }
+  .hover-overlay-container .overlay-btn-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  transition: .5s ease;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  }
+  .hover-overlay-container .overlay-btn-container .overlay-btn {
+  color: rgb(253, 249, 249);
+  font-size: 16px;
+  padding: 10px 16px;
+  background-color: rgb(139, 29, 21);
+  text-decoration: none;
+  }
+  
+  form {
+    font: 1em sans-serif;
+    max-width: 1220px;
+  }
+  
+  p > label {
+    display: block;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  textarea,
+  fieldset {
+    width : 100%;
+    border: 1px solid #333;
+    box-sizing: border-box;
+  }
+  
+  input:invalid {
+    box-shadow: 0 0 5px 1px rgb(195, 0, 255);
+    text-underline-position:auto rgb(92, 16, 16);
+  }
