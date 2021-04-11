@@ -63,7 +63,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpDelete("Updete")]
+        [HttpPost("Update")]
         public IActionResult Update(Customer user)
         {
             var result = _customerService.Update(user);
